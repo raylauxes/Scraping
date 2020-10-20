@@ -1,12 +1,10 @@
-import re
-import requests
+###import re
+###import requests
 import time
 
-from bs4 import BeautifulSoup
+###from bs4 import BeautifulSoup
 from random import random
 from selenium import webdriver
-
-t
 
 def top_10_sites(vocab_list):
     # driver = webdriver.Chrome() #Need to specify chromedriver.exe's location in PATH
@@ -15,7 +13,6 @@ def top_10_sites(vocab_list):
 
     just_a_sec = random()
 
-    # vocab_list = ["浅草", "デートスポット", "雑貨"]
     search_string = ""
     for i in vocab_list:
         search_string = search_string + i + '"　"'
@@ -31,7 +28,6 @@ def top_10_sites(vocab_list):
     # for h1 in driver.find_elements_by_tag_name("h1"):
     #    print(h1.text)
 
-    # i = 0
     url_list = []
     XPATH = '//*[@id="rso"]/div/div/div[" + str(i + 1) + "]/div/div/div[1]/a'
     for a in driver.find_elements_by_xpath(XPATH):
