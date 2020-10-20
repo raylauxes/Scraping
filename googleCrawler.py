@@ -1,14 +1,11 @@
-###import re
-###import requests
 import time
 
-###from bs4 import BeautifulSoup
 from random import random
 from selenium import webdriver
 
 def top_10_sites(vocab_list):
     # driver = webdriver.Chrome() #Need to specify chromedriver.exe's location in PATH
-    # OR specify it as an argument like this
+    # OR specify it as an argument like this:
     driver = webdriver.Chrome("C:\WORK\GitHub\Scraping\chromedriver.exe")
 
     just_a_sec = random()
@@ -25,14 +22,24 @@ def top_10_sites(vocab_list):
     search_box.submit()
     time.sleep(just_a_sec * 1)
 
+    result = []
     # for h1 in driver.find_elements_by_tag_name("h1"):
     #    print(h1.text)
+    for element in driver.find_elements_by_class_name("aCOpRe"):
+        result.append(element.text)
+        print(element.text)
+        print("-"*100)
 
-    url_list = []
-    XPATH = '//*[@id="rso"]/div/div/div[" + str(i + 1) + "]/div/div/div[1]/a'
-    for a in driver.find_elements_by_xpath(XPATH):
-        url_list.append(a.get_attribute('href'))
 
-    for i in url_list:
-        print(i)
-    # driver.quit()
+    # url_list = []
+    # XPATH = '//*[@id="rso"]/div/div/div[" + str(i + 1) + "]/div/div/div[1]/a'
+    # for a in driver.find_elements_by_xpath(XPATH):
+    #     url_list.append(a.get_attribute('href'))
+    #
+    # for i in url_list:
+    #     print(i)
+
+
+    driver.quit()
+
+    return result
