@@ -1,45 +1,45 @@
 import time
 
-from random import random
+### from random import random
+import random
 from selenium import webdriver
 
-def top_10_sites(vocab_list):
-    # driver = webdriver.Chrome() #Need to specify chromedriver.exe's location in PATH
-    # OR specify it as an argument like this:
+def top_10_sites(vocab_list, target_url='https://www.google.com/'):
+
     driver = webdriver.Chrome("C:\WORK\GitHub\Scraping\chromedriver.exe")
+    # OR
+    # driver = webdriver.Chrome() #Need to specify chromedriver.exe's location in PATH
 
-    just_a_sec = random()
+    #Turn input words into a search string
+    search_string = '"' + f'" "'.join(vocab_list) + '"'
 
-    search_string = ""
-    for i in vocab_list:
-        search_string = search_string + i + '"　"'
+    #Set wait time to avoid frequent access to search engine
+    wait = random.random()
 
-    driver.get('https://www.google.com/')
-    time.sleep(just_a_sec * 1)
+    #Access the target url
+    driver.get(target_url)
+
+    time.sleep(wait * 1)
+
+    #Enter serach string in search box
     search_box = driver.find_element_by_name("q")
-    search_box.send_keys('"' + search_string + '"')
-    time.sleep(just_a_sec * 1)
+    search_box.send_keys(search_string)
+
+    time.sleep(wait * 1)
+
+    #Submit (equivalent to pressing "Enter")
     search_box.submit()
-    time.sleep(just_a_sec * 1)
+
+    time.sleep(wait * 1)
 
     result = []
-    # for h1 in driver.find_elements_by_tag_name("h1"):
-    #    print(h1.text)
     for element in driver.find_elements_by_class_name("aCOpRe"):
         result.append(element.text)
         print(element.text)
         print("-"*100)
 
 
-    # url_list = []
-    # XPATH = '//*[@id="rso"]/div/div/div[" + str(i + 1) + "]/div/div/div[1]/a'
-    # for a in driver.find_elements_by_xpath(XPATH):
-    #     url_list.append(a.get_attribute('href'))
-    #
-    # for i in url_list:
-    #     print(i)
-
-
-    driver.quit()
+    #Quit Chrome
+    # driver.quit()
 
     return result
