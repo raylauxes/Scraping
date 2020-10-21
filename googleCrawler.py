@@ -2,8 +2,10 @@ import time
 import random
 from selenium import webdriver
 
-class gCrawler
+class gCrawler:
+
     def __init__(self):
+        pass
 
     def top_10_sites(self, vocab_list, target_url='https://www.google.com/'):
 
@@ -24,16 +26,10 @@ class gCrawler
         search_box.submit() #Submit (equivalent to pressing "Enter")
         time.sleep(wait * wait_times)
 
-        # result = []
-        # for element in driver.find_elements_by_class_name("aCOpRe"):
-        #     result.append(element.text)
-        #     print(element.text)
-        #     print("-"*100)
         raw_sen = ""
         for element in driver.find_elements_by_class_name("aCOpRe"):
             raw_sen += element.text
-            # print(element.text)
-            # print("-"*100)
+
 
 
 
