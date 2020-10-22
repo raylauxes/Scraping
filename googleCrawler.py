@@ -5,14 +5,9 @@ from selenium import webdriver
 
 class gCrawler:
 
-    # def __init__(self):
-    #     pass
     def __init__(self, vocab_list, target_url='https://www.google.com/'):
         self.vocab_list = vocab_list
         self.target_url = target_url
-
-    # def top_10_sites(self, vocab_list, target_url='https://www.google.com/'):
-    # def top_10_sites(self, target_url='https://www.google.com/'):
 
         driver = webdriver.Chrome("C:\WORK\GitHub\Scraping\chromedriver.exe") #Need to download chromdriver.exe
        #OR
@@ -31,9 +26,6 @@ class gCrawler:
         search_box.submit() #Submit (equivalent to pressing "Enter")
         time.sleep(wait * wait_times)
 
-        # self.raw_sen = ""
-        # for element in driver.find_elements_by_class_name("aCOpRe"):
-        #     self.raw_sen += element.text
         self.raw_sen = []
         for element in driver.find_elements_by_class_name("aCOpRe"):
             self.raw_sen.append(element.text)
@@ -60,7 +52,6 @@ class gCrawler:
 
 
         result.to_csv(f"search_results_{'_'.join(self.vocab_list)}.csv", encoding="utf-8-sig")
-
 
 
         # driver.quit() #Quit Chrome
